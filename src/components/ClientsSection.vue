@@ -25,12 +25,9 @@
 
 <script setup lang="ts">
 import { useTestimonialStore } from '@/stores/testimonialStore';
+import { getImageUrl } from '@/utils/assetUtils';
 
 const testimonialStore = useTestimonialStore();
-
-const getImageUrl = (folder: string, name: string) => {
-	return new URL(`../assets/images/${folder}/${name}`, import.meta.url).href;
-};
 </script>
 
 <style scoped>

@@ -9,10 +9,8 @@
 				<h2>About our Business</h2>
 			</div>
 			<p>
-				Anmac has been a supplier of rice to various parts of India for many
-				years, with a focus on matching and exceeding the expectations of our
-				clients. Quality and transparency is our motto, and this reflects in our
-				business as well as in all our dealings and products.
+				Anmac has been a supplier of rice to various parts of India for many years, with a focus on matching and exceeding the expectations of our clients. Quality and transparency is our motto, and
+				this reflects in our business as well as in all our dealings and products.
 			</p>
 			<button @click="scrollToElement('#contact-section')">Contact Us</button>
 		</div>
@@ -20,10 +18,7 @@
 </template>
 
 <script setup lang="ts">
-const scrollToElement = (selector: string) => {
-	const element = document.querySelector(selector);
-	if (element) element.scrollIntoView({ behavior: 'smooth' });
-};
+import { scrollToElement } from '@/utils/uiUtils';
 </script>
 
 <style scoped>

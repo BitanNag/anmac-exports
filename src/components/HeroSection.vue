@@ -25,17 +25,10 @@
 
 <script setup lang="ts">
 import { useUiStore } from '@/stores/uiStore';
+import { getImageUrl } from '@/utils/assetUtils';
+import { scrollToElement } from '@/utils/uiUtils';
 
 const uiStore = useUiStore();
-
-const getImageUrl = (folder: string, name: string) => {
-	return new URL(`../assets/images/${folder}/${name}`, import.meta.url).href;
-};
-
-const scrollToElement = (selector: string) => {
-	const element = document.querySelector(selector);
-	if (element) element.scrollIntoView({ behavior: 'smooth' });
-};
 </script>
 
 <style scoped>

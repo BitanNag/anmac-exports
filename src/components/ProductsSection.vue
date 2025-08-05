@@ -6,12 +6,8 @@
 		</div>
 
 		<div class="products-container">
-			<div
-				class="product-box"
-				v-for="category in portfolioStore.productCategories"
-				:key="category.id"
-			>
-				<img :src="getImageUrl(category.mainImage)" alt="" />
+			<div class="product-box" v-for="category in portfolioStore.productCategories" :key="category.id">
+				<img :src="getImageUrl('products', category.mainImage)" alt="" />
 				<div class="box-overlay">
 					<h5>{{ category.name }}</h5>
 					<span>
@@ -22,10 +18,7 @@
 							</li>
 						</ul>
 					</span>
-					<button
-						v-if="category.buttonText"
-						@click="scrollToElement('#contact-section')"
-					>
+					<button v-if="category.buttonText" @click="scrollToElement('#contact-section')">
 						{{ category.buttonText }}
 					</button>
 				</div>
@@ -36,17 +29,10 @@
 
 <script setup lang="ts">
 import { usePortfolioStore } from '@/stores/portfolioStore';
+import { getImageUrl } from '@/utils/assetUtils';
+import { scrollToElement } from '@/utils/uiUtils';
 
 const portfolioStore = usePortfolioStore();
-
-const scrollToElement = (selector: string) => {
-	const element = document.querySelector(selector);
-	if (element) element.scrollIntoView({ behavior: 'smooth' });
-};
-
-const getImageUrl = (name: string) => {
-	return new URL(`../assets/images/products/${name}`, import.meta.url).href;
-};
 </script>
 
 <style scoped>
@@ -134,13 +120,7 @@ const getImageUrl = (name: string) => {
 	text-align: left;
 }
 
-.products-section
-	.products-container
-	.product-box
-	.box-overlay
-	span
-	.item-variety
-	li {
+.products-section .products-container .product-box .box-overlay span .item-variety li {
 	margin-left: 15px;
 }
 

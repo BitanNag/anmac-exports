@@ -7,10 +7,7 @@
 			<div class="column general-info">
 				<div class="row-item address">
 					<img src="../assets/images/icons/location.png" alt="" />
-					<p>
-						212, SN Banerjee Road, Manirampore, PO&PS Barrackpore,
-						Kolkata-700120
-					</p>
+					<p>212, SN Banerjee Road, Manirampore, PO&PS Barrackpore, Kolkata-700120</p>
 				</div>
 				<div class="row-item phone">
 					<img src="../assets/images/icons/call.png" alt="" />
@@ -22,24 +19,15 @@
 				</div>
 			</div>
 			<div class="column social-links">
-				<a
-					class="link"
-					href="https://www.facebook.com/profile.php?id=100094229394107&mibextid=ZbWKwL"
-				>
+				<a class="link" href="https://www.facebook.com/profile.php?id=100094229394107&mibextid=ZbWKwL">
 					<img src="../assets/images/social-links/facebook-logo.png" alt="" />
 					<span>&nbsp;&nbsp;Facebook</span>
 				</a>
-				<a
-					class="link"
-					href="https://www.instagram.com/anmacexports?igsh=eWgycjg2Zjg2MW5v"
-				>
+				<a class="link" href="https://www.instagram.com/anmacexports?igsh=eWgycjg2Zjg2MW5v">
 					<img src="../assets/images/social-links/instagram-logo.png" alt="" />
 					<span>&nbsp;&nbsp;Instagram</span>
 				</a>
-				<a
-					class="link"
-					href="https://www.linkedin.com/in/anol-chaki-749583367 "
-				>
+				<a class="link" href="https://www.linkedin.com/in/anol-chaki-749583367 ">
 					<img src="../assets/images/social-links/linkedin-logo.png" alt="" />
 					<span>&nbsp;&nbsp;LinkedIn</span>
 				</a>
@@ -47,9 +35,7 @@
 			<div class="column page-links">
 				<button @click="scrollToElement('#home-section')">Home</button>
 				<button @click="scrollToElement('#about-section')">About Us</button>
-				<button @click="scrollToElement('#products-section')">
-					Our Products
-				</button>
+				<button @click="scrollToElement('#products-section')">Our Products</button>
 				<button @click="scrollToElement('#contact-section')">Contact Us</button>
 			</div>
 		</div>
@@ -57,12 +43,7 @@
 </template>
 
 <script setup lang="ts">
-const scrollToElement = (selector: string) => {
-	const element = document.querySelector(selector);
-	if (element) {
-		element.scrollIntoView({ behavior: 'smooth' });
-	}
-};
+import { scrollToElement } from '@/utils/uiUtils';
 </script>
 
 <style scoped>
