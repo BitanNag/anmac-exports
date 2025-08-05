@@ -107,4 +107,9 @@ const uiStore = useUiStore();
 		gap: 10px;
 	}
 }
+
+:deep(.v-carousel .v-btn) {
+	background: rgba(0, 0, 0, 0.3);
+	color: white !important;
+}
 </style>
