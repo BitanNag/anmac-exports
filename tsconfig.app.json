@@ -8,6 +8,6 @@
 		"paths": {
 			"@/*": ["./src/*"]
 		},
-		"types": ["vue", "vuetify"]
+		"types": ["vue", "vuetify", "node"]
 	}
 }
