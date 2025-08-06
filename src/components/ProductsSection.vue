@@ -19,9 +19,16 @@
 							</li>
 						</ul>
 					</span>
-					<v-btn v-if="category.buttonText" @click="scrollToElement('#contact-section')" variant="outlined" color="white">
-						{{ category.buttonText }}
-					</v-btn>
+
+					<div class="button-group">
+						<v-btn v-if="category.buttonText" @click="scrollToElement('#contact-section')" variant="outlined" color="white">
+							{{ category.buttonText }}
+						</v-btn>
+
+						<router-link to="/products" v-if="category.gallery.length > 0">
+							<v-btn variant="outlined" color="white"> View Gallery </v-btn>
+						</router-link>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -120,6 +127,11 @@ const portfolioStore = usePortfolioStore();
 .products-section .products-container .product-box:hover .box-overlay {
 	top: 0;
 	opacity: 0.9;
+}
+.button-group {
+	display: flex;
+	gap: 15px;
+	margin-top: 30px;
 }
 @media (max-width: 992px) {
 	.products-section .products-container .product-box {
