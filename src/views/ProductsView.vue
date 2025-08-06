@@ -2,13 +2,10 @@
 	<div>
 		<HeaderSection />
 
-		<v-container>
+		<v-container class="py-12">
 			<div v-for="category in portfolioStore.productCategories" :key="category.id" class="category-wrapper">
 				<template v-if="category.gallery.length > 0">
-					<h2 class="category-title">{{ category.name }} Varieties</h2>
-					<v-carousel height="400" show-arrows="hover" hide-delimiter-background cycle>
-						<v-carousel-item v-for="item in category.gallery" :key="item.id" :src="getImageUrl(category.name, item.image)" cover></v-carousel-item>
-					</v-carousel>
+					<CoverCarousel :slides="category.gallery" :category-name="category.name" />
 				</template>
 			</div>
 		</v-container>
@@ -22,23 +19,14 @@
 import HeaderSection from '@/components/HeaderSection.vue';
 import InfoSection from '@/components/InfoSection.vue';
 import FooterSection from '@/components/FooterSection.vue';
+import CoverCarousel from '@/components/CoverCarousel.vue'; // Import the new component
 import { usePortfolioStore } from '@/stores/portfolioStore';
 
 const portfolioStore = usePortfolioStore();
-
-// Keep this function here to render carousel images correctly
-const getImageUrl = (category: string, imageName: string) => {
-	return new URL(`../assets/images/products/${category.toLowerCase()}/${imageName}`, import.meta.url).href;
-};
 </script>
 
 <style scoped>
 .category-wrapper {
-	margin: 60px 0;
-}
-.category-title {
-	font-size: 2rem;
-	font-weight: 500;
-	margin-bottom: 20px;
+	margin-bottom: 60px;
 }
 </style>
