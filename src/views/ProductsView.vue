@@ -40,7 +40,7 @@ const portfolioStore = usePortfolioStore();
 	text-transform: uppercase;
 	letter-spacing: -0.02em;
 	position: absolute;
-	top: 30px;
+	top: 20px;
 	left: 50%;
 	transform: translateX(-50%);
 	pointer-events: none;
@@ -50,5 +50,24 @@ const portfolioStore = usePortfolioStore();
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
+}
+
+/* --- Media query for tablets and larger phones --- */
+@media (max-width: 768px) {
+	.background-title {
+		font-size: 4.2rem;
+		top: 40px;
+	}
+	.category-wrapper {
+		padding-top: 50px;
+		margin-bottom: 30px;
+	}
+}
+
+/* --- Media query for smaller phones --- */
+@media (max-width: 480px) {
+	.background-title {
+		font-size: 3.5rem;
+	}
 }
 </style>

@@ -223,4 +223,30 @@ onBeforeUnmount(() => {
 .nav-arrow.right {
 	right: 20px;
 }
+
+@media (max-width: 768px) {
+	.dots {
+		flex-wrap: wrap;
+		padding: 0 20px;
+	}
+	.card {
+		width: 200px;
+		height: 280px;
+	}
+	.card.left-2 {
+		transform: translateX(-250px) scale(0.8) translateZ(-300px);
+	}
+	.card.left-1 {
+		transform: translateX(-120px) scale(0.9) translateZ(-100px);
+	}
+	.card.right-1 {
+		transform: translateX(120px) scale(0.9) translateZ(-100px);
+	}
+	.card.right-2 {
+		transform: translateX(250px) scale(0.8) translateZ(-300px);
+	}
+	.member-name {
+		font-size: 2rem;
+	}
+}
 </style>
