@@ -3,7 +3,9 @@
 		<div class="title">
 			<div class="title-container">
 				<hr />
-				<h2>Request a Callback</h2>
+				<router-link to="/contact" class="section-title-link">
+					<h2>Request a Callback</h2>
+				</router-link>
 			</div>
 		</div>
 
@@ -12,13 +14,13 @@
 				<v-form v-model="isFormValid" @submit.prevent="submitInput">
 					<v-alert v-if="alertText.content" :type="alertText.type" :text="alertText.content" density="compact" class="mb-4"></v-alert>
 
-					<v-text-field v-model="name" :rules="validation.name" label="Full Name" variant="outlined" density="compact"></v-text-field>
+					<v-text-field v-model="name" :rules="validationRules.name" label="Full Name" variant="outlined" density="compact"></v-text-field>
 
-					<v-text-field v-model="email" :rules="validation.email" label="Email" variant="outlined" density="compact"></v-text-field>
+					<v-text-field v-model="email" :rules="validationRules.email" label="Email" variant="outlined" density="compact"></v-text-field>
 
-					<v-text-field v-model="phoneNumber" :rules="validation.phone" label="Phone Number" type="number" variant="outlined" density="compact"></v-text-field>
+					<v-text-field v-model="phoneNumber" :rules="validationRules.phone" label="Phone Number" type="number" variant="outlined" density="compact"></v-text-field>
 
-					<v-textarea v-model="message" :rules="validation.message" label="Message" variant="outlined" density="compact"></v-textarea>
+					<v-textarea v-model="message" :rules="validationRules.message" label="Message" variant="outlined" density="compact"></v-textarea>
 
 					<v-btn type="submit" :disabled="!isFormValid" color="grey-darken-4" class="mt-2">Send</v-btn>
 				</v-form>
@@ -43,22 +45,19 @@ const name = ref('');
 const email = ref('');
 const phoneNumber = ref('');
 const message = ref('');
-const alertText = ref<{
-	type: 'success' | 'error' | undefined;
-	content: string | null;
-}>({
+const alertText = ref<{ type: 'success' | 'error' | undefined; content: string | null }>({
 	type: undefined,
 	content: null,
 });
 
-// --- Validation Rules ---
-const validation = {
+const validationRules = {
 	name: [(value: string) => !!value || 'Name is required.'],
 	email: [(value: string) => !!value || 'Email is required.', (value: string) => /.+@.+\..+/.test(value) || 'Email must be valid.'],
 	phone: [(value: string) => !!value || 'Phone number is required.', (value: string) => value?.length >= 10 || 'Phone number must be at least 10 digits.'],
 	message: [(value: string) => !!value || 'Message is required.'],
 };
 
+// Simplified submit function
 const submitInput = async () => {
 	alertText.value = { type: undefined, content: null };
 
@@ -74,23 +73,20 @@ const submitInput = async () => {
 			submittedOn: currentDate,
 		});
 
-		if (result.status === 200) {
-			alertText.value = {
-				type: 'success',
-				content: 'Details received! We will contact you shortly.',
-			};
-		} else throw new Error('Form submission failed');
+		if (result.status === 200) alertText.value = { type: 'success', content: 'Details received! We will contact you shortly.' };
+		else throw new Error('Form submission failed');
 	} catch (error) {
-		alertText.value = {
-			type: 'error',
-			content: 'There was an error submitting your form. Please try again later.',
-		};
+		alertText.value = { type: 'error', content: 'There was an error submitting your form. Please try again later.' };
 		console.error(error);
 	}
 };
 </script>
 
 <style scoped>
+.section-title-link {
+	text-decoration: none;
+	color: inherit;
+}
 .contact-section {
 	position: relative;
 	overflow: hidden;
