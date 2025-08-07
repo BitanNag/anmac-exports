@@ -30,4 +30,8 @@ const uiStore = useUiStore();
 	position: absolute;
 	bottom: -35px;
 }
+:deep(.v-window__right),
+:deep(.v-window__left) {
+	opacity: 0.6;
+}
 </style>

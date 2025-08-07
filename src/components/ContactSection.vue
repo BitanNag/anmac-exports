@@ -11,7 +11,7 @@
 
 		<div class="body">
 			<div class="form-container">
-				<v-form v-model="isFormValid" @submit.prevent="submitInput">
+				<v-form ref="form" v-model="isFormValid" @submit.prevent="submitInput">
 					<v-alert v-if="alertText.content" :type="alertText.type" :text="alertText.content" density="compact" class="mb-4"></v-alert>
 
 					<v-text-field v-model="name" :rules="validationRules.name" label="Full Name" variant="outlined" density="compact"></v-text-field>
@@ -39,8 +39,8 @@ import { useUiStore } from '@/stores/uiStore';
 
 const uiStore = useUiStore();
 
+const form = ref();
 const isFormValid = ref(false);
-
 const name = ref('');
 const email = ref('');
 const phoneNumber = ref('');
@@ -57,7 +57,6 @@ const validationRules = {
 	message: [(value: string) => !!value || 'Message is required.'],
 };
 
-// Simplified submit function
 const submitInput = async () => {
 	alertText.value = { type: undefined, content: null };
 
@@ -73,8 +72,12 @@ const submitInput = async () => {
 			submittedOn: currentDate,
 		});
 
-		if (result.status === 200) alertText.value = { type: 'success', content: 'Details received! We will contact you shortly.' };
-		else throw new Error('Form submission failed');
+		if (result.status === 200) {
+			const firstName = name.value.split(' ')[0];
+			alertText.value = { type: 'success', content: `Thank you, ${firstName}! We will contact you shortly.` };
+
+			form.value?.reset();
+		} else throw new Error('Form submission failed');
 	} catch (error) {
 		alertText.value = { type: 'error', content: 'There was an error submitting your form. Please try again later.' };
 		console.error(error);
