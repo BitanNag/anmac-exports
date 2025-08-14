@@ -1,12 +1,10 @@
 import { defineStore } from 'pinia';
 
-// A single, reusable interface for a product image/variant
 export interface ProductVariant {
 	id: number;
 	image: string;
 }
 
-// A new interface for a whole product category
 export interface ProductCategory {
 	id: number;
 	name: string;
@@ -27,16 +25,10 @@ export const usePortfolioStore = defineStore('portfolio', {
 			{
 				id: 1,
 				name: 'Rice',
-				description:
-					'We supply premium quality rice. Our portfolio is as follows:',
+				description: 'We supply premium quality rice. Our portfolio is as follows:',
 				mainImage: 'rice-img-1.jpg',
 				buttonText: 'Buy Now',
-				varieties: [
-					'All varieties of Basmati (1121, 1401, 1509, etc)',
-					'IR-64 raw and parboiled',
-					'Sona Masuri',
-					'Others',
-				],
+				varieties: ['All varieties of Basmati (1121, 1401, 1509, etc)', 'IR-64 raw and parboiled', 'Sona Masuri', 'Others'],
 				gallery: [
 					{ id: 1, image: 'Rice_01.jpeg' },
 					{ id: 2, image: 'Rice_02.jpeg' },
@@ -66,8 +58,7 @@ export const usePortfolioStore = defineStore('portfolio', {
 			{
 				id: 2,
 				name: 'Spices',
-				description:
-					'We deal and export every spice available in India, of premium and export quality.',
+				description: 'We deal and export every spice available in India, of premium and export quality.',
 				mainImage: 'spices-img-1.jpg',
 				buttonText: 'Contact Us',
 				varieties: ['Black Pepper', 'Cardamom'],
@@ -76,14 +67,10 @@ export const usePortfolioStore = defineStore('portfolio', {
 			{
 				id: 3,
 				name: 'Millets',
-				description: 'We deal in 3 major variants of Millets: ',
+				description: 'We deal in 3 major variants of millets: ',
 				mainImage: 'millets-img-1.jpg',
 				buttonText: 'Contact Us',
-				varieties: [
-					'Bajra / Pearl Millets',
-					'Jowar / Sorghum Millets',
-					'Ragi / Finger Millets',
-				],
+				varieties: ['Bajra / Pearl Millets', 'Jowar / Sorghum Millets', 'Ragi / Finger Millets'],
 				gallery: [
 					{ id: 1, image: 'Millets_01.jpg' },
 					{ id: 2, image: 'Millets_02.jpg' },

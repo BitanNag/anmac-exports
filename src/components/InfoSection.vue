@@ -1,45 +1,45 @@
 <template>
-	<div class="info-section">
+	<v-sheet class="info-section" color="#2e2e2e" theme="dark">
 		<div class="info-logo">
 			<h1>Anmac Exports</h1>
 		</div>
-		<div class="contact-info">
-			<div class="column general-info">
-				<div class="row-item address">
-					<img src="../assets/images/icons/location.png" alt="" />
-					<p>212, SN Banerjee Road, Manirampore, PO&PS Barrackpore, Kolkata-700120</p>
-				</div>
-				<div class="row-item phone">
-					<img src="../assets/images/icons/call.png" alt="" />
-					<span>(+91)8777421268</span>
-				</div>
-				<div class="row-item email">
-					<img src="../assets/images/icons/mail.png" alt="" />
-					<span>anmacexports@gmail.com</span>
-				</div>
-			</div>
-			<div class="column social-links">
+
+		<v-row class="contact-info-row" justify="center">
+			<v-col cols="12" md="4" class="px-md-8">
+				<v-list-item class="mb-4" prepend-icon="mdi-map-marker">
+					<v-list-item-title>212, SN Banerjee Road, Manirampore, PO&PS Barrackpore, Kolkata-700120</v-list-item-title>
+				</v-list-item>
+				<v-list-item class="mb-4" prepend-icon="mdi-phone">
+					<v-list-item-title>(+91)8777421268</v-list-item-title>
+				</v-list-item>
+				<v-list-item class="mb-4" prepend-icon="mdi-email">
+					<v-list-item-title>anmacexports@gmail.com</v-list-item-title>
+				</v-list-item>
+			</v-col>
+
+			<v-col cols="12" md="4" class="social-links-col">
 				<a class="link" href="https://www.facebook.com/profile.php?id=100094229394107&mibextid=ZbWKwL">
-					<img src="../assets/images/social-links/facebook-logo.png" alt="" />
-					<span>&nbsp;&nbsp;Facebook</span>
+					<v-icon>mdi-facebook</v-icon>
+					<span class="d-none d-md-inline">  Facebook</span>
 				</a>
 				<a class="link" href="https://www.instagram.com/anmacexports?igsh=eWgycjg2Zjg2MW5v">
-					<img src="../assets/images/social-links/instagram-logo.png" alt="" />
-					<span>&nbsp;&nbsp;Instagram</span>
+					<v-icon>mdi-instagram</v-icon>
+					<span class="d-none d-md-inline">  Instagram</span>
 				</a>
-				<a class="link" href="https://www.linkedin.com/in/anol-chaki-749583367 ">
-					<img src="../assets/images/social-links/linkedin-logo.png" alt="" />
-					<span>&nbsp;&nbsp;LinkedIn</span>
+				<a class="link" href="https://www.linkedin.com/in/anol-chaki-749583367">
+					<v-icon>mdi-linkedin</v-icon>
+					<span class="d-none d-md-inline">  LinkedIn</span>
 				</a>
-			</div>
-			<div class="column page-links">
-				<button @click="scrollToElement('#home-section')">Home</button>
-				<button @click="scrollToElement('#about-section')">About Us</button>
-				<button @click="scrollToElement('#products-section')">Our Products</button>
-				<button @click="scrollToElement('#contact-section')">Contact Us</button>
-			</div>
-		</div>
-	</div>
+			</v-col>
+
+			<v-col cols="12" md="4" class="page-links-col d-none d-md-flex">
+				<v-btn variant="text" @click="scrollToElement('#home-section')">Home</v-btn>
+				<v-btn variant="text" @click="scrollToElement('#about-section')">About Us</v-btn>
+				<v-btn variant="text" @click="scrollToElement('#products-section')">Our Products</v-btn>
+				<v-btn variant="text" @click="scrollToElement('#contact-section')">Contact Us</v-btn>
+			</v-col>
+		</v-row>
+	</v-sheet>
 </template>
 
 <script setup lang="ts">
@@ -48,137 +48,62 @@ import { scrollToElement } from '@/utils/uiUtils';
 
 <style scoped>
 .info-section {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	padding: 90px 0;
+	padding: 90px 20px;
 	margin-top: 50px;
-	background-color: #2e2e2e;
 }
 
-.info-section .info-logo {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.info-logo {
+	text-align: center;
 	padding: 20px 0;
+	margin-bottom: 20px;
 }
 
-.info-section .info-logo > h1 {
-	color: white;
+.info-logo > h1 {
 	font-size: 36px;
 	text-transform: uppercase;
 	font-weight: bold;
 	letter-spacing: -2px;
 }
 
-.info-section .contact-info {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.contact-info-row :deep(.v-list-item-title) {
+	white-space: normal;
+	line-height: 1.5;
 }
 
-.info-section .contact-info .column {
-	width: 33%;
-	height: 300px;
+.social-links-col {
 	display: flex;
-	padding: 20px;
-	margin: 20px 0;
-}
-
-.info-section .contact-info .column.general-info {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: 40px;
 }
 
-.info-section .contact-info .column.general-info .row-item {
-	position: relative;
-	width: 70%;
-	display: flex;
-	margin: 20px 0;
-	color: white;
-	transform: translateX(50px);
-}
-
-.info-section .contact-info .column.general-info .row-item.email {
-	margin: 35px 0 20px -25px;
-}
-
-.info-section .contact-info .column.general-info .row-item > img {
-	margin: 0 10px;
-	display: block;
-	height: 25px;
-}
-
-.info-section .contact-info .column.social-links {
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-.info-section .contact-info .column.social-links .link {
-	margin: 20px;
-	display: flex;
-	align-items: center;
+.link {
 	color: white;
 	text-decoration: none;
+	display: flex;
+	align-items: center;
 	width: 120px;
 }
 
-.info-section .contact-info .column.page-links {
+.page-links-col {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 25px;
+	gap: 15px;
 }
 
-.info-section .contact-info .column.page-links > button {
-	background: transparent;
-	border: none;
-	outline: none;
-	width: 120px;
-	border-radius: 10px;
-	color: white;
-	font-size: 16px;
-	cursor: pointer;
-}
-
-@media (max-width: 992px) {
-	.info-section .contact-info {
-		flex-direction: column;
-	}
-
-	.info-section .contact-info .column {
-		width: 100%;
-	}
-
-	.info-section .contact-info .column.general-info .row-item {
-		width: 80%;
-		transform: translate(0);
-	}
-
-	.info-section .contact-info .column.social-links {
+@media (max-width: 991px) {
+	.social-links-col {
 		flex-direction: row;
-		height: 100px;
-	}
-
-	.info-section .contact-info .column.social-links .link {
-		margin: 0;
-		display: flex;
 		justify-content: center;
-		align-items: center;
+		gap: 100px;
+		margin-top: 40px;
 	}
 
-	.info-section .contact-info .column.social-links .link > span {
-		display: none;
-	}
-
-	.info-section .contact-info .column.page-links {
-		display: none;
+	.link {
+		width: auto;
 	}
 }
 </style>
