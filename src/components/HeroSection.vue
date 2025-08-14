@@ -26,10 +26,15 @@ const uiStore = useUiStore();
 	margin-bottom: 50px;
 	position: relative;
 }
+
 .hero-nav {
 	position: absolute;
-	bottom: -35px;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, 50%);
+	z-index: 5;
 }
+
 :deep(.v-window__right),
 :deep(.v-window__left) {
 	opacity: 0.6;

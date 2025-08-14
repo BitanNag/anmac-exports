@@ -1,31 +1,15 @@
 <template>
-	<nav class="nav-bar">
-		<ul class="nav-list">
-			<li class="nav-item">
-				<button v-if="isHomePage" @click="scrollToElement('#home-section')" class="nav-link">Home</button>
-				<router-link v-else class="nav-link" to="/">Home</router-link>
-			</li>
-
-			<li class="nav-item">
-				<button v-if="isHomePage" @click="scrollToElement('#about-section')" class="nav-link">About</button>
-				<router-link v-else class="nav-link" to="/about">About</router-link>
-			</li>
-
-			<li class="nav-item">
-				<button v-if="isHomePage" @click="scrollToElement('#products-section')" class="nav-link">Products</button>
-				<router-link v-else class="nav-link" to="/products">Products</router-link>
-			</li>
-
-			<!-- <li class="nav-item">
-				<router-link class="nav-link" to="/testimonials">Testimonials</router-link>
-			</li> -->
-
-			<li class="nav-item">
-				<button v-if="isHomePage" @click="scrollToElement('#contact-section')" class="nav-link">Contact</button>
-				<router-link v-else class="nav-link" to="/contact">Contact</router-link>
-			</li>
-		</ul>
-	</nav>
+	<v-toolbar color="#252525" class="nav-bar" rounded="lg">
+		<v-spacer></v-spacer>
+		<div class="d-flex justify-center flex-wrap">
+			<div v-for="item in navItems" :key="item.id" class="nav-item-wrapper">
+				<v-btn variant="text" :to="!isHomePage ? item.path : undefined" @click="isHomePage ? scrollToElement(item.hash) : undefined" class="nav-link" :block="true">
+					{{ item.title }}
+				</v-btn>
+			</div>
+		</div>
+		<v-spacer></v-spacer>
+	</v-toolbar>
 </template>
 
 <script setup lang="ts">
@@ -33,37 +17,28 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { scrollToElement } from '@/utils/uiUtils';
 
-// Get the current route information
 const route = useRoute();
-
-// Create a computed property to check if we are on the homepage
 const isHomePage = computed(() => route.path === '/');
+
+const navItems = [
+	{ id: 'home', title: 'Home', path: '/', hash: '#home-section' },
+	{ id: 'about', title: 'About', path: '/about', hash: '#about-section' },
+	{ id: 'products', title: 'Products', path: '/products', hash: '#products-section' },
+	{ id: 'contact', title: 'Contact', path: '/contact', hash: '#contact-section' },
+];
 </script>
 
 <style scoped>
-/* The styles remain the same as the previous step */
 .nav-bar {
 	width: 60%;
-	z-index: 1;
 }
-.nav-bar .nav-list {
-	width: 100%;
-	padding: 15px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: #252525;
-	list-style-type: none;
-	border-radius: 10px;
-	gap: 30px;
+
+.nav-item-wrapper {
+	padding: 6px 0;
+	margin: 0 10px;
 }
-.nav-bar .nav-list .nav-item {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-/* Style both button and router-link to look identical */
-.nav-bar .nav-list .nav-item .nav-link {
+
+.nav-link.v-btn {
 	background: transparent;
 	outline: none;
 	border: 1px solid transparent;
@@ -74,25 +49,36 @@ const isHomePage = computed(() => route.path === '/');
 	border-radius: 6px;
 	cursor: pointer;
 	text-decoration: none;
-	text-align: center;
 	transition: all 0.2s ease;
+	text-transform: none;
+	height: 100%;
 }
-.nav-bar .nav-list .nav-item .nav-link:hover,
-.nav-bar .nav-list .nav-item .nav-link.router-link-exact-active {
+
+.nav-link.v-btn:hover,
+.nav-link.v-btn--active {
 	background-color: white;
 	color: black;
 	border-color: black;
 }
+
 @media (max-width: 992px) {
 	.nav-bar {
 		width: 90%;
 	}
 }
+
 @media (max-width: 863px) {
-	.nav-bar .nav-list {
-		flex-wrap: wrap;
-		padding: 10px;
-		gap: 10px;
+	.nav-bar.v-toolbar {
+		height: auto !important;
+	}
+
+	.nav-bar.v-toolbar :deep(.v-toolbar__content) {
+		height: auto !important;
+		padding: 8px 0;
+	}
+
+	.nav-item-wrapper {
+		margin: 0 5px;
 	}
 }
 </style>

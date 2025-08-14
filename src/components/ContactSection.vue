@@ -9,9 +9,10 @@
 			</div>
 		</div>
 
-		<div class="body">
-			<div class="form-container">
-				<v-form ref="form" v-model="isFormValid" @submit.prevent="submitInput">
+		<v-row no-gutters>
+			<v-col cols="12" md="1"></v-col>
+			<v-col cols="12" md="5">
+				<v-form ref="form" v-model="isFormValid" @submit.prevent="submitInput" class="form-wrapper">
 					<v-alert v-if="alertText.content" :type="alertText.type" :text="alertText.content" density="compact" class="mb-4"></v-alert>
 
 					<v-text-field v-model="name" :rules="validationRules.name" label="Full Name" variant="outlined" density="compact"></v-text-field>
@@ -22,13 +23,14 @@
 
 					<v-textarea v-model="message" :rules="validationRules.message" label="Message" variant="outlined" density="compact"></v-textarea>
 
-					<v-btn type="submit" :disabled="!isFormValid" color="grey-darken-4" class="mt-2">Send</v-btn>
+					<v-btn type="submit" :disabled="!isFormValid" color="grey-darken-4" variant="flat" class="action-button mt-2">Send</v-btn>
 				</v-form>
-			</div>
-			<div class="map-container">
+			</v-col>
+
+			<v-col cols="12" md="6" class="map-container">
 				<iframe :src="uiStore.mapLink" width="600" height="450" style="border: 0" allow="fullscreen" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-			</div>
-		</div>
+			</v-col>
+		</v-row>
 	</div>
 </template>
 
@@ -115,50 +117,45 @@ const submitInput = async () => {
 	font-size: 28px;
 	font-weight: 500;
 }
-.contact-section .body {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+
+.form-wrapper {
+	width: 80%;
+	margin: 0 auto;
 }
-.contact-section .body .form-container {
-	width: 50%;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	margin: 20px 30px;
-}
-.contact-section .body .form-container > form {
-	width: 70%;
-}
-.contact-section .body .map-container {
-	width: 50%;
-	height: 450px;
-	display: flex;
-	justify-content: center;
-	align-items: flex-start;
-	margin: 20px 0 0 0;
-}
-.contact-section .body .map-container iframe {
+
+.map-container iframe {
 	width: 100%;
-	height: 82%;
+	height: 100%;
+	min-height: 400px;
 }
+
+.action-button.v-btn {
+	border-radius: 0;
+	text-transform: none;
+	font-weight: normal;
+}
+
+.action-button.v-btn:hover {
+	color: black !important;
+	background-color: white !important;
+	border: 1px solid black !important;
+}
+
 @media (max-width: 992px) {
 	.contact-section .title .title-container {
 		transform: translate(20px, 0);
 		margin: 40px auto 0 auto;
 	}
-	.contact-section .body {
-		flex-direction: column;
+	.contact-section .title .title-container hr {
+		width: 10%;
+		height: 1px;
+		border: none;
+		margin: 0 10px;
+		background-color: #b7b7b7;
 	}
-	.contact-section .body .form-container {
-		width: 100%;
-		justify-content: center;
-	}
-	.contact-section .body .form-container > form {
+	.form-wrapper {
 		width: 90%;
-	}
-	.contact-section .body .map-container {
-		width: 100%;
+		margin-bottom: 20px;
 	}
 }
 </style>

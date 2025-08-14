@@ -7,17 +7,17 @@
 
 		<v-carousel cycle height="550" hide-delimiter-background show-arrows="hover" class="testimonial-carousel">
 			<v-carousel-item v-for="client in testimonialStore.clients" :key="client.name">
-				<div class="testimonial-item">
+				<v-sheet class="d-flex flex-column align-center justify-center fill-height text-center pa-4">
 					<v-avatar size="200" class="mb-4">
 						<v-img :src="getImageUrl('client-pictures', client.picture)" :alt="client.name" cover></v-img>
 					</v-avatar>
-					<h3>{{ client.name }}</h3>
-					<p class="testimonial-text">
+					<h3 class="text-h5">{{ client.name }}</h3>
+					<p class="testimonial-text mx-auto" style="max-width: 700px">
 						<img src="@/assets/images/quotation-marks/left-quote.png" alt="quote" />
 						{{ client.testimonial }}
 						<img src="@/assets/images/quotation-marks/right-quote.png" alt="quote" />
 					</p>
-				</div>
+				</v-sheet>
 			</v-carousel-item>
 		</v-carousel>
 	</div>
@@ -31,6 +31,7 @@ const testimonialStore = useTestimonialStore();
 </script>
 
 <style scoped>
+/* Updated and simplified styles */
 .client-section {
 	padding: 10px 0;
 }
@@ -56,16 +57,6 @@ const testimonialStore = useTestimonialStore();
 
 .testimonial-carousel {
 	margin-top: 40px;
-}
-
-.testimonial-item {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	padding: 0 15%;
-	height: 100%;
 }
 
 .testimonial-text {

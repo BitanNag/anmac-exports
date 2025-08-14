@@ -52,8 +52,11 @@ h1 {
 	font-weight: bold;
 	margin-bottom: 40px;
 }
+
 .header-nav {
 	position: absolute;
-	bottom: -35px;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, 50%);
 }
 </style>
