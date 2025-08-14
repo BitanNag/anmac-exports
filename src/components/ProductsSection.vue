@@ -28,7 +28,7 @@
 										<v-btn v-if="category.buttonText" @click="scrollToElement('#contact-section')" variant="outlined" color="white">
 											{{ category.buttonText }}
 										</v-btn>
-										<router-link to="/products" v-if="category.gallery.length > 0">
+										<router-link :to="`/products#${category.name.toLowerCase()}`" v-if="category.gallery.length > 0">
 											<v-btn variant="outlined" color="white"> View Gallery </v-btn>
 										</router-link>
 									</div>

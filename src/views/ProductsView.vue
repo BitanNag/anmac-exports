@@ -3,7 +3,7 @@
 		<HeaderSection />
 
 		<v-container class="py-12">
-			<div v-for="category in portfolioStore.productCategories" :key="category.id" class="category-wrapper">
+			<div v-for="category in portfolioStore.productCategories" :key="category.id" class="category-wrapper" :id="category.name.toLowerCase()">
 				<template v-if="category.gallery.length > 0">
 					<h1 class="background-title">Our {{ category.name }}</h1>
 
@@ -18,13 +18,37 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import HeaderSection from '@/components/HeaderSection.vue';
 import InfoSection from '@/components/InfoSection.vue';
 import FooterSection from '@/components/FooterSection.vue';
 import CoverCarousel from '@/components/CoverCarousel.vue';
 import { usePortfolioStore } from '@/stores/portfolioStore';
+import { scrollToElement } from '@/utils/uiUtils';
 
 const portfolioStore = usePortfolioStore();
+const route = useRoute();
+
+const handleScroll = (hash: string) => {
+	if (hash) {
+		// Wait  for the element to be rendered
+		setTimeout(() => {
+			scrollToElement(hash, 80); // 80px offset for the header
+		}, 100);
+	}
+};
+
+// Scroll when the component first loads
+onMounted(() => {
+	handleScroll(route.hash);
+});
+
+// Also scroll if the hash changes while already on the page
+watch(
+	() => route.hash,
+	(newHash) => handleScroll(newHash)
+);
 </script>
 
 <style scoped>
