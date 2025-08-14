@@ -5,7 +5,7 @@
 
 			<div class="carousel-track">
 				<v-card v-for="(slide, index) in slides" :key="slide.id" :class="getCardClass(index)" class="card" @click="updateCarousel(index)">
-					<v-img :src="imageUrls[index]" height="100%" cover></v-img>
+					<v-img :src="`/images/products/${categoryName.toLowerCase()}/${slide.image}`" height="100%" cover></v-img>
 				</v-card>
 			</div>
 
@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import type { ProductVariant } from '@/stores/portfolioStore';
 
 // --- PROPS ---
@@ -34,35 +34,19 @@ const props = defineProps<{
 
 // --- STATE ---
 const currentIndex = ref(0);
-const isAnimating = ref(false);
-const imageUrls = ref<string[]>([]);
 
 // --- METHODS ---
-
-// This function must be async and use dynamic import
-const resolveImageUrls = async () => {
-	const resolvedUrls = await Promise.all(
-		props.slides.map(async (slide) => {
-			const path = `../assets/images/products/${props.categoryName.toLowerCase()}/${slide.image}`;
-			// The { default: url } destructuring gets the resolved URL from the module
-			const { default: url } = await import(/* @vite-ignore */ path);
-			return url;
-		})
-	);
-	imageUrls.value = resolvedUrls;
-};
-
 const updateCarousel = (newIndex: number) => {
-	if (isAnimating.value) return;
-	isAnimating.value = true;
 	currentIndex.value = (newIndex + props.slides.length) % props.slides.length;
-	setTimeout(() => {
-		isAnimating.value = false;
-	}, 800);
 };
 
-const nextSlide = () => updateCarousel(currentIndex.value + 1);
-const prevSlide = () => updateCarousel(currentIndex.value - 1);
+const nextSlide = () => {
+	currentIndex.value = (currentIndex.value + 1) % props.slides.length;
+};
+
+const prevSlide = () => {
+	currentIndex.value = (currentIndex.value - 1 + props.slides.length) % props.slides.length;
+};
 
 const getCardClass = (index: number) => {
 	const offset = (index - currentIndex.value + props.slides.length) % props.slides.length;
@@ -76,23 +60,15 @@ const getCardClass = (index: number) => {
 	return classes[offset] || 'hidden';
 };
 
-// --- WATCHER for resolving image urls on prop reception
-watch(() => props.slides, resolveImageUrls, { immediate: true });
-
 // --- LIFECYCLE HOOKS for keyboard events ---
 const handleKeydown = (e: KeyboardEvent) => {
 	if (e.key === 'ArrowLeft') prevSlide();
 	if (e.key === 'ArrowRight') nextSlide();
 };
 
-onMounted(() => {
-	document.addEventListener('keydown', handleKeydown);
-	updateCarousel(0);
-});
+onMounted(() => document.addEventListener('keydown', handleKeydown));
 
-onBeforeUnmount(() => {
-	document.removeEventListener('keydown', handleKeydown);
-});
+onBeforeUnmount(() => document.removeEventListener('keydown', handleKeydown));
 </script>
 
 <style scoped>

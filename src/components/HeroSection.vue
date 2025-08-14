@@ -1,7 +1,7 @@
 <template>
 	<div class="hero-section" id="home-section">
 		<v-carousel cycle height="700" hide-delimiters show-arrows="hover">
-			<v-carousel-item v-for="slide in uiStore.heroDisplay" :key="slide.id" :src="getImageUrl('hero-display', slide.picture)" cover></v-carousel-item>
+			<v-carousel-item v-for="slide in uiStore.heroDisplay" :key="slide.id" :src="`/images/hero-display/${slide.picture}`" cover></v-carousel-item>
 		</v-carousel>
 
 		<NavBar class="hero-nav" />
@@ -10,7 +10,6 @@
 
 <script setup lang="ts">
 import { useUiStore } from '@/stores/uiStore';
-import { getImageUrl } from '@/utils/assetUtils';
 import NavBar from '@/components/NavBar.vue';
 
 const uiStore = useUiStore();

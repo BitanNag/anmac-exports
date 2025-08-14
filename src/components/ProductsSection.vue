@@ -12,7 +12,7 @@
 				<v-col v-for="category in portfolioStore.productCategories" :key="category.id" cols="12" md="4">
 					<v-hover v-slot="{ isHovering, props }">
 						<v-card class="product-card" v-bind="props">
-							<v-img :src="getImageUrl('products', category.mainImage)" height="550px" cover aspect-ratio="1"> </v-img>
+							<v-img :src="`/images/products/${category.mainImage}`" height="550px" cover aspect-ratio="1"> </v-img>
 
 							<div class="box-overlay" :class="{ 'is-active': isHovering }">
 								<div class="overlay-content">
@@ -45,7 +45,6 @@
 <script setup lang="ts">
 import { usePortfolioStore } from '@/stores/portfolioStore';
 import { scrollToElement } from '@/utils/uiUtils';
-import { getImageUrl } from '@/utils/assetUtils';
 
 const portfolioStore = usePortfolioStore();
 </script>

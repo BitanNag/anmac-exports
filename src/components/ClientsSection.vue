@@ -9,13 +9,13 @@
 			<v-carousel-item v-for="client in testimonialStore.clients" :key="client.name">
 				<v-sheet class="d-flex flex-column align-center justify-center fill-height text-center pa-4">
 					<v-avatar size="200" class="mb-4">
-						<v-img :src="getImageUrl('client-pictures', client.picture)" :alt="client.name" cover></v-img>
+						<v-img :src="`/images/client-pictures/${client.picture}`" :alt="client.name" cover></v-img>
 					</v-avatar>
 					<h3 class="text-h5">{{ client.name }}</h3>
 					<p class="testimonial-text mx-auto" style="max-width: 700px">
-						<img src="@/assets/images/quotation-marks/left-quote.png" alt="quote" />
+						<img src="/images/quotation-marks/left-quote.png" alt="quote" />
 						{{ client.testimonial }}
-						<img src="@/assets/images/quotation-marks/right-quote.png" alt="quote" />
+						<img src="/images/quotation-marks/right-quote.png" alt="quote" />
 					</p>
 				</v-sheet>
 			</v-carousel-item>
@@ -25,7 +25,6 @@
 
 <script setup lang="ts">
 import { useTestimonialStore } from '@/stores/testimonialStore';
-import { getImageUrl } from '@/utils/assetUtils';
 
 const testimonialStore = useTestimonialStore();
 </script>

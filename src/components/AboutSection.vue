@@ -3,7 +3,7 @@
 		<v-row align="center">
 			<v-col cols="12" md="5" class="pa-0">
 				<div class="image-wrapper">
-					<v-img :src="aboutImg" alt="About our business" class="about-img" />
+					<v-img src="/images/about-img.jpeg" alt="About our business" class="about-img" />
 				</div>
 			</v-col>
 
@@ -26,7 +26,6 @@
 
 <script setup lang="ts">
 import { scrollToElement } from '@/utils/uiUtils';
-import aboutImg from '@/assets/images/about-img.jpeg';
 </script>
 
 <style scoped>

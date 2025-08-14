@@ -1,7 +1,7 @@
 <template>
 	<div class="header-section">
 		<div class="header-img">
-			<img :src="getImageUrl('hero-display', uiStore.heroDisplay[0].picture)" alt="Header background" />
+			<img :src="`/images/hero-display/${uiStore.heroDisplay[0].picture}`" alt="Header background" />
 		</div>
 		<div class="title">
 			<h1>Anmac Exports</h1>
@@ -12,7 +12,6 @@
 
 <script setup lang="ts">
 import { useUiStore } from '@/stores/uiStore';
-import { getImageUrl } from '@/utils/assetUtils';
 import NavBar from '@/components/NavBar.vue';
 
 const uiStore = useUiStore();
