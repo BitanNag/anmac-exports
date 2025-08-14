@@ -94,6 +94,11 @@ import { scrollToElement } from '@/utils/uiUtils';
 	gap: 15px;
 }
 
+.page-links-col :deep(.v-btn) {
+	text-transform: none;
+	font-size: 16px;
+}
+
 @media (max-width: 991px) {
 	.social-links-col {
 		flex-direction: row;
